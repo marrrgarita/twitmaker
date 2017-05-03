@@ -3,9 +3,26 @@
 
 $(function(){
 
-  $('#new_tweet').on('click', function(e){
+  $('#new_tweet').on('submit', function(e){
     e.preventDefault();
-    console.log('testing click listener');
+
+    $.ajax({
+      url: $(this).attr('action'),
+      method: $(this).attr('method'),
+      data: $(this).serialize(),
+      dataType: 'html',
+
+    }).done(function(data){
+      console.log('success');
+      $('.tweets').prepend(data);
+      $('#tweet_message').val("");
+    }).fail(function(){
+      console.log('fail');
+
+    }).always(function(){
+      console.log('does not matter');
+      $('#create-tweet').removeAttr('disabled');
+    });
   });
 
 
