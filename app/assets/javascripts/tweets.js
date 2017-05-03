@@ -10,6 +10,13 @@ $(function() {
       method: $(this).attr('method'),
       data: $(this).serialize(),
       dataType: 'json',
+
+    }).done(function(data){
+      console.log(data);
+    }).fail(function(){
+
+    }).always(function(){
+
     });
   });
 
